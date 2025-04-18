@@ -4,7 +4,7 @@ A simple Chrome extension for converting text between different delimiters.
 
 ## Demo
 ![](./icons/icon.png)
-![](./assets/google_ext.png)
+<!-- ![](./assets/google_ext.png) -->
 
 ![demo](./assets/demo.gif)
 
