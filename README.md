@@ -4,10 +4,10 @@ A simple Chrome extension for converting text between different delimiters.
 
 ## Demo
 ![](./icons/icon.png)
+![](./assets/google_ext.png)
 
-![demo](./assets/demo.gif)
 
-<img src="./assets/image.png" width="250">
+[![watch the demo](./icons/icon.png)](https://youtu.be/2q6MoVk1JRw)
 
 ## Features
 
