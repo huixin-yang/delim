@@ -4,7 +4,7 @@
 
 A simple Chrome extension for converting text between different delimiters.
 
-![](./assets/image.png)
+<img src="./assets/image.png" width="250">
 
 ## Features
 
