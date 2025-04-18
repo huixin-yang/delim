@@ -1,8 +1,11 @@
 # Delimiter Chrome Extension
 
+A simple Chrome extension for converting text between different delimiters.
+
+## Demo
 ![](./icons/icon.png)
 
-A simple Chrome extension for converting text between different delimiters.
+![demo](./assets/demo.gif)
 
 <img src="./assets/image.png" width="250">
 
