@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Delimiter</title>
+  <style>
+    :root {
+      --primary-color: #2ecc71;
+      --primary-hover: #27ae60;
+      --secondary-color: #ecf0f1;
+      --secondary-hover: #bdc3c7;
+      --border-color: #e0e0e0;
+      --text-color: #2c3e50;
+      --background-color: #fff;
+      --input-background: #f9f9f9;
+      --spacing: 8px;
+      --button-selected: #2ecc71;
+      --button-unselected: #ecf0f1;
+    }
+
+    body {
+      width: 300px;
+      padding: var(--spacing);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-color);
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing);
+    }
+
+    h2 {
+      margin: 0;
+      color: var(--text-color);
+      font-size: 1.2em;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    textarea {
+      height: 80px;
+      padding: var(--spacing);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      resize: vertical;
+      font-family: 'Consolas', 'Monaco', monospace;
+      background-color: var(--input-background);
+      font-size: 0.85em;
+      line-height: 1.4;
+      overflow-y: auto;
+      word-wrap: break-word;
+      white-space: pre;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+
+    button {
+      padding: var(--spacing);
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 0.9em;
+      transition: background-color 0.2s;
+    }
+
+    button:hover {
+      background-color: var(--primary-hover);
+    }
+
+    .result-container {
+      margin-top: var(--spacing);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      overflow: hidden;
+      height: 150px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .result {
+      padding: var(--spacing);
+      word-wrap: break-word;
+      white-space: pre;
+      font-family: 'Consolas', 'Monaco', monospace;
+      background-color: var(--input-background);
+      overflow-y: auto;
+      font-size: 0.85em;
+      line-height: 1.4;
+      flex: 1;
+    }
+
+    .copy-button {
+      width: 100%;
+      border-radius: 0;
+      background-color: var(--secondary-color);
+      color: var(--text-color);
+      border-top: 1px solid var(--border-color);
+      font-size: 0.85em;
+    }
+
+    .copy-button:hover {
+      background-color: var(--secondary-hover);
+    }
+
+    .delimiter-options {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing);
+      margin-bottom: var(--spacing);
+    }
+
+    .delimiter-row {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing);
+    }
+
+    .delimiter-row label {
+      font-weight: 500;
+      font-size: 0.85em;
+    }
+
+    .delimiter-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing);
+    }
+
+    .delimiter-button {
+      flex: 1;
+      min-width: 40px;
+      padding: var(--spacing);
+      background-color: var(--button-unselected);
+      color: var(--text-color);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9em;
+      text-align: center;
+      transition: all 0.2s;
+      font-family: 'Consolas', 'Monaco', monospace;
+    }
+
+    .delimiter-button:hover {
+      background-color: var(--secondary-hover);
+    }
+
+    .delimiter-button.selected {
+      background-color: var(--button-selected);
+      color: white;
+      border-color: var(--button-selected);
+    }
+
+    .custom-input {
+      display: none;
+      margin-top: var(--spacing);
+    }
+
+    .custom-input.visible {
+      display: block;
+    }
+
+    .quote-buttons {
+      display: flex;
+      gap: var(--spacing);
+    }
+
+    .quote-button {
+      flex: 1;
+      padding: var(--spacing);
+      background-color: var(--button-unselected);
+      color: var(--text-color);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9em;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .quote-button:hover {
+      background-color: var(--secondary-hover);
+    }
+
+    .quote-button.selected {
+      background-color: var(--button-selected);
+      color: white;
+      border-color: var(--button-selected);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Text Delimiter</h2>
+    <textarea id="inputText" placeholder="Enter text to delimit..."></textarea>
+    <div class="delimiter-options">
+      <div class="delimiter-row">
+        <label>From:</label>
+        <div class="delimiter-buttons" id="fromDelimiters">
+          <button class="delimiter-button" data-value=",">,</button>
+          <button class="delimiter-button" data-value=";">;</button>
+          <button class="delimiter-button" data-value="|">|</button>
+          <button class="delimiter-button" data-value="\t">\t</button>
+          <button class="delimiter-button" data-value="\n">\n</button>
+        </div>
+        <input type="text" id="fromDelimiterCustom" class="custom-input" placeholder="Enter custom delimiter">
+      </div>
+      <div class="delimiter-row">
+        <label>To:</label>
+        <div class="delimiter-buttons" id="toDelimiters">
+          <button class="delimiter-button" data-value=",">,</button>
+          <button class="delimiter-button" data-value=";">;</button>
+          <button class="delimiter-button" data-value="|">|</button>
+          <button class="delimiter-button" data-value="\t">\t</button>
+          <button class="delimiter-button" data-value="\n">\n</button>
+        </div>
+        <input type="text" id="toDelimiterCustom" class="custom-input" placeholder="Enter custom delimiter">
+      </div>
+      <div class="delimiter-row">
+        <label>Quote Type:</label>
+        <div class="delimiter-buttons">
+          <button class="delimiter-button" data-type="none">No Quotes</button>
+          <button class="delimiter-button" data-type="single">' '</button>
+          <button class="delimiter-button" data-type="double">" "</button>
+        </div>
+      </div>
+    </div>
+    <button id="delimitButton">Convert Text</button>
+    <div class="result-container">
+      <div class="result" id="result"></div>
+      <button class="copy-button" id="copyButton">Copy Result</button>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html> 
