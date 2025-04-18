@@ -1,6 +1,10 @@
 # Delimiter Chrome Extension
 
+![](./icons/icon.png)
+
 A simple Chrome extension for converting text between different delimiters.
+
+![](./assets/image.png)
 
 ## Features
 
