@@ -6,8 +6,9 @@ A simple Chrome extension for converting text between different delimiters.
 ![](./icons/icon.png)
 ![](./assets/google_ext.png)
 
+![demo](./assets/demo.gif)
 
-[![watch the demo](./icons/icon.png)](https://youtu.be/2q6MoVk1JRw)
+[Video Link](https://youtu.be/2q6MoVk1JRw)
 
 ## Features
 
